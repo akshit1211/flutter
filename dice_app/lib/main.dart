@@ -26,11 +26,15 @@ class _DiceAppState extends State<DiceApp> {
   String leftDice = 'images/dice4.png';
   String rightDice = 'images/dice1.png';
 
-  void rollD() {
-    setState(() {
-      leftDice = diceImages[Random().nextInt(diceImages.length)];
-      rightDice = diceImages[Random().nextInt(diceImages.length)];
-    });
+  void rollD() async {
+    for (int i = 0; i < 6; i++) {
+      await Future.delayed(const Duration(milliseconds: 150), () {
+        setState(() {
+          leftDice = diceImages[Random().nextInt(diceImages.length)];
+          rightDice = diceImages[Random().nextInt(diceImages.length)];
+        });
+      });
+    }
   }
 
   @override
